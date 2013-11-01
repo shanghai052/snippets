@@ -1,0 +1,8 @@
+
+def make_a_box(ip):
+	print ' %s' % ('_' * (len(ip) + 2))
+	print '|%s|' % (' ' * (len(ip) + 2))
+	print '|%s|' % (' ' * (len(ip) + 2))
+	print '| %s|' % (ip + ' ')
+	print '|%s|' % (' ' * (len(ip) + 2))
+	print '|%s|' % ('_' * (len(ip) + 2))
