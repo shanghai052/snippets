@@ -1,0 +1,12 @@
+# decimal number to hex
+print 'this is my hex value: %x' % 255  # any int value in place of 255
+
+# hex value to decimal
+from functools import partial
+
+hex_to_dec = partial(int, base=16)
+test = 'ff'  # to be passed to hex_to_dec caller, test needs to be a string
+
+print 'hex_to_dec(%s) is: ' % test, hex_to_dec(test)
+
+print 'dec_to_hex(%s) is: %x' % (hex_to_dec(test), hex_to_dec(test))
