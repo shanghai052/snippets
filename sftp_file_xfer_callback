@@ -1,0 +1,30 @@
+#functools.partial will substitute a list of args as one arg to be passed to a function that expects less or more etc...
+#see below for an example of file transfer progress reporting using functools.partial
+#there are other use cases here: http://stackoverflow.com/questions/15331726/how-does-the-functools-partial-work-in-python
+#and here: http://stackoverflow.com/questions/3252228/python-why-is-functools-partial-necessary
+
+import functools
+import paramiko
+
+class AllowAnythingPolicy(paramiko.MissingHostKeyPolicy):
+	def missing_host_key(self, client, hostname, key):
+		return
+		
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(AllowAnythingPolicy())
+client.connect('127.0.0.1', username='test') # password='')
+
+def my_callback(filename, bytes_so_far, bytes_total):
+	print 'Transfer of %r is at %d/%d bytes (%.1f%%)' % (
+		filename, bytes_so_far, bytes_total, 100. * bytes_so_far / bytes_total)
+		
+sftp = client.open_sftp()
+sftp.chdir('/var/log')
+for filename in sorted(sftp.listdir()):
+	if filename.startswith('messages.'):
+		callback_for_filename = functools.partial(my_callback, filename)
+		sftp.get(filename, filename, callback=callback_for_filename)
+client.close()
+
+
+	
