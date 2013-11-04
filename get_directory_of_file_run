@@ -1,0 +1,3 @@
+path = os.path.abspath(os.path.dirname(__file__))
+
+can prepend os.chdir() to set cwd to where the file is being run
