@@ -1,0 +1,23 @@
+custom bash
+PS1='\[\033[01;32m\]\u\[\033[01;34m\]::\[\033[01;31m\]\h \[\033[00;34m\]{ \[\033[01;34m\]\w \[\033[00;34m\]}\[\033[01;32m\]-> \[\033[00m\]'
+
+bash aliases
+
+## ls -al for pwd
+alias list='ls -altr --color=auto'
+
+## grep ignores case
+alias grep='grep -i --color=auto'
+
+## file navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
+## vmware as root
+alias vmware='gksudo vmware'
+
+## python server
+alias serve='python -m SimpleHTTPServer'
+
+## find all pics created today
+alias findpics='find /mnt/nfs/storage/pictures/ -daystart -ctime 0 -print'
