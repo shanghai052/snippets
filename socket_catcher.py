@@ -34,5 +34,6 @@ with open('workfile', 'rb') as f:
     message = f.read()
 
 
+
 print cipher.decrypt(message)
 '''
